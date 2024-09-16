@@ -10,14 +10,18 @@
     <div class="search_box">
         <div class="search_block">
             <form>
-              <input type="text" name="text" class="search" placeholder="Введите VIN">
+              <input type="text" id="vin_number" name="text" class="search" placeholder="Введите VIN">
               <input type="submit" name="submit" class="submit"  id ="button" value="">
+              <span id='vin_number_warning_message'></span>
             </form>
             <div class="car_cards">
               
             </div>
           </div>
     </div>
+    <div id="vin_number_data">
+    </div>
+    <script src="./renderjson.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
