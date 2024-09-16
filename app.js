@@ -12,7 +12,7 @@ function onClickFrom(event){
     vinNumberData.replaceChildren();
     const vinNumber = vinNumberEl.value;
     if (validateVinNumber(vinNumber)) {
-        getVinData(vinNumber).then((vinData) => {
+        getVinDataFromServer(vinNumber).then((vinData) => {
             renderVinData(vinData);
         })
     } else {
@@ -22,10 +22,27 @@ function onClickFrom(event){
         }, 5000);
     }
 }
+//Todo: Delete after test
 async function getVinData(vinNumber) {
     const API_KEY = 'ZrQEPSkKaXRmb3JzeUBnbWFpbC5jb20=';
     let response = await fetch(`https://auto.dev/api/vin/${vinNumber}?apikey=${API_KEY}`)
     return  await response.json()
+}
+async function getVinDataFromServer(vinNumber) {
+    let requestData = {
+        "vin_number": vinNumber
+    };
+    requestData['vin_number'] = vinNumber;
+    let response = await fetch(
+        'get-vin-number.php',
+        {
+            "method": "POST",
+            "headers": {"Content-Type": "application/json; charset=utf-8"},
+            "body": JSON.stringify(requestData)
+        },
+    );
+
+    return await response.json();
 }
 function validateVinNumber(vin) {
     vin = vin.toLowerCase();
