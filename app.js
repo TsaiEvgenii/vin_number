@@ -12,7 +12,7 @@ function onClickFrom(event){
     vinNumberData.replaceChildren();
     const vinNumber = vinNumberEl.value;
     if (validateVinNumber(vinNumber)) {
-        getVinDataFromServer(vinNumber).then((vinData) => {
+        getVinData(vinNumber).then((vinData) => {
             renderVinData(vinData);
         })
     } else {
